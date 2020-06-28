@@ -20,7 +20,14 @@ export function tempCardo(state = initViewCardoState, action) {
 			return {
 				...state,
 				cardoName: action.newCardoName
-			}
+			};
+		case '@TEMP_CARDO/INIT_CARDO_ID':
+			return {
+				...state,
+				cardoId: action.cardo.cardoId,
+				cardoName: action.cardo.cardoName,
+				cardobases: action.cardo.cardobases
+			};
 		default:
 			return state;
 	}

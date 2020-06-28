@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, FlatList} from 'react-native';
 import {Icon, Fab} from 'native-base';
 import {connect} from 'react-redux';
-
+import {initCardoId} from '../states/tempCardo-actions';
 import CardoItem from './CardoItem';
 
 
@@ -28,7 +28,8 @@ class CardoList extends React.Component {
     }
 
     render() {
-        const {cardos} = this.props.cardos;
+        const cardos = this.props.cardos;
+        console.log(this.props.cardos);
         return (
             <View style={{flex: 1}}>
             <FlatList
@@ -46,8 +47,10 @@ class CardoList extends React.Component {
         );
     }
     handleFab(){
-        console.log('handleFab');
-        this.props.navigation.navigate('CardoMaker', {cardoId: 3});
+        // const uuid = require('uuid/v4');
+        // let id = 3;
+        this.props.dispatch(initCardoId({cardoId: 3, cardoName: '', cardobases: []}));
+        this.props.navigation.navigate('CardoMaker');
     }
     // handleRefresh() {
     //     const {dispatch, searchText} = this.props;

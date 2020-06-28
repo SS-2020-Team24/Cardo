@@ -11,3 +11,9 @@ export function changeCardoName(newCardoName) {
 		newCardoName
 	};
 }
+export function initCardoId(cardo) {
+	return {
+		type: '@TEMP_CARDO/INIT_CARDO_ID',
+		cardo
+	};
+}
