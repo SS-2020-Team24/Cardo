@@ -8,11 +8,16 @@ export function myCardo(state = initMyCardoState, action) {
 		case '@MY_CARDO/FINISH_EDIT_CARDO':
 			let newCardos = state.cardos.slice(0);
 			
+			let exist = false;
 			for(let p of newCardos) {
 				if(p.cardoId == action.newCardo.cardoId) {
 					p.cardoName = action.newCardo.cardoName;
 					p.cardobases = action.newCardo.cardobases;
+					exist = true;
 				}
+			}
+			if(!exist) {
+				newCardos.push(action.newCardo);
 			}
 			return {
 				...state, 
