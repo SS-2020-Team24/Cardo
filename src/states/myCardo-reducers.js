@@ -13,6 +13,7 @@ export function myCardo(state = initMyCardoState, action) {
 				if(p.cardoId == action.newCardo.cardoId) {
 					p.cardoName = action.newCardo.cardoName;
 					p.cardobases = action.newCardo.cardobases;
+					// p = action.newCardo;
 					exist = true;
 				}
 			}

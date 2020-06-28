@@ -42,7 +42,7 @@ class TopScreen extends React.Component {
                         <Text style={styles.buttonText}>Edit</Text>
                     </Button>
                     <Button info full rounded style={styles.button} onPress={() => this.handleButton2()}>
-                        <Text style={styles.buttonText}>dd</Text>
+                        <Text style={styles.buttonText}>View My Cardo</Text>
                     </Button>
                     <Button info full rounded style={styles.button} onPress={() => this.handleButton3()}>
                         <Text style={styles.buttonText}>test</Text>

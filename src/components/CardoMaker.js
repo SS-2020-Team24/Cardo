@@ -66,7 +66,7 @@ class CardoMaker extends React.Component {
 	}
 
 	createCardobase() {
-		let newCardobase = {x: 100, y: 100, text: 'AAA'};
+		let newCardobase = {id: this.props.cardobases.length,initX: 100, initY: 100, text: 'AAA'};
 		this.props.dispatch(createCardobase_action(newCardobase));
 		console.log('create new cardobase');
 	}

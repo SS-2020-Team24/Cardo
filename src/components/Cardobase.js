@@ -6,7 +6,13 @@ import {
 
 import Draggable from 'react-native-draggable';
 
-export default class Cardobase extends React.Component {
+import {connect} from 'react-redux';
+
+import {
+	updateCardobase as updateCardobase_action
+} from '../states/tempCardo-actions' 
+
+class Cardobase extends React.Component {
     static propTypes = {
         initState: PropTypes.object
     };
@@ -15,7 +21,8 @@ export default class Cardobase extends React.Component {
         super(props);
 
         this.state = {
-			initX: 100,
+        	id: -1,
+			initX: 0,
 			initY: 100,
 			x: 100,
 			y: 100,
@@ -37,6 +44,11 @@ export default class Cardobase extends React.Component {
 			});
 		}
 	}
+
+	componentWillUnmount() {
+		let newCardobase = {id: this.state.id, initX: this.state.x, initY: this.state.y, text: this.state.text};
+		this.props.dispatch(updateCardobase_action(newCardobase));
+	}	
 
 	render() { 
 		return (
@@ -63,10 +75,13 @@ export default class Cardobase extends React.Component {
 	handleRelease(event, gestureState, bounds) {
 		this.setState({
 			x: bounds.left,
-			y: bounds.top
+			y: bounds.top,
 		});
 	}
 }
 
 const styles = { 
 };
+
+export default connect(state => ({
+}))(Cardobase); 
