@@ -32,15 +32,18 @@ import QRcodeScreen from './components/QRcodeScreen';
 // }, {
 //     headerMode: 'none'
 // });
+
+import {tempCardo} from './states/tempCardo-reducers';
+
 const Stack = createStackNavigator();
 
 const appReducer = {
-    search, toast, post, postForm, postItem
+    search, toast, post, postForm, postItem,
+    tempCardo
 };
 
 const store = createStore(combineReducers(appReducer), 
     compose(applyMiddleware(thunkMiddleware, loggerMiddleware)));
-
 
 export default class App extends React.Component {
     render() {
