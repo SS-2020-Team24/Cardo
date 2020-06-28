@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 
 class CardoViewer extends React.Component {
     static propTypes = {
+        cardoName: PropTypes.string.isRequired,
     	cardobases: PropTypes.array.isRequired
     };
 
@@ -25,6 +26,7 @@ class CardoViewer extends React.Component {
 		return (
 			<View>
 				<Text>View My Cardo</Text>
+                <Text>{this.props.cardoName}</Text>
 				{card}
 			</View>
 		);

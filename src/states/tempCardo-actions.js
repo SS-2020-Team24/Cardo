@@ -4,3 +4,10 @@ export function createCardobase(newCardobase) {
 		newCardobase
 	};
 }
+
+export function changeCardoName(newCardoName) {
+	return {
+		type: '@TEMP_CARDO/CHANGE_CARDO_NAME',
+		newCardoName
+	};
+}

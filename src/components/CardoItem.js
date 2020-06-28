@@ -23,7 +23,7 @@ class CardoItem extends React.Component {
         return (
             <ListItem containerStyle={{flex: 1}} onPress={this.handleTooltipToggle}>
                         <Text style={{backgroundColor:'blue',color:'white',padding:10,width:180}}>
-                            {item.name}
+                            {item.cardoName}
                         </Text>
                         {this.state.tooltipOpen && 
                             <View style={styles.tooltip} onPress={this.handleTooltipToggle}>

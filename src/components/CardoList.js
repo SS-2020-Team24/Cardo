@@ -9,6 +9,7 @@ import CardoItem from './CardoItem';
 
 class CardoList extends React.Component {
     static propTypes = {
+        cardos: PropTypes.array.isRequired
     };
 
     constructor(props) {
@@ -23,11 +24,11 @@ class CardoList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(listcardos());
+        // this.props.dispatch(listcardos());
     }
 
     render() {
-        const {cardos} = this.props;
+        const {cardos} = this.props.cardos;
         return (
             <View style={{flex: 1}}>
             <FlatList
@@ -46,7 +47,7 @@ class CardoList extends React.Component {
     }
     handleFab(){
         console.log('handleFab');
-        this.props.navigation.navigate('CardoMaker', {name:"abc"});
+        this.props.navigation.navigate('CardoMaker', {cardoId: 3});
     }
     // handleRefresh() {
     //     const {dispatch, searchText} = this.props;
@@ -55,5 +56,5 @@ class CardoList extends React.Component {
 }
 
 export default connect((state) => ({
-    cardos: state.myCardo.cardos
+    ...state.myCardo
 }))(CardoList);
