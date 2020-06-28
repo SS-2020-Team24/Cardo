@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {BackHandler, Text} from 'react-native';
-
 import {Root, StyleProvider} from 'native-base';
 // import getTheme from '../native-base-theme/components';
 // import platform from '../native-base-theme/variables/platform';
@@ -21,9 +20,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import TopScreen from './components/TopScreen';
 import ScannerScreen from './components/ScannerScreen';
-import CardList from './components/CardList';
+import CardoList from './components/CardoList';
 import QRcodeScreen from './components/QRcodeScreen';
-
+import CardoMaker from './components/CardoMaker';
 
 // const AppNavigator = createStackNavigator({
 //     Today: {screen: TodayScreen},
@@ -55,9 +54,10 @@ export default class App extends React.Component {
                     <Root>
                     <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: 'gray' } }}>
                         <Stack.Screen name="TopScreen" component={TopScreen} options={{ title: 'Menu', headerShown: false}} />
-                        <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ title: 'ScannerScreen', headerShown: true}} />
-                        <Stack.Screen name="CardList" component={CardList} options={{ title: 'CardList', headerShown: true}} />
+                        
+                        <Stack.Screen name="CardoList" component={CardoList} options={{ title: 'CardoList', headerShown: true}} />
                         <Stack.Screen name="QRcodeScreen" component={QRcodeScreen} options={{ title: 'QRcodeScreen', headerShown: true}} />
+                        <Stack.Screen name="CardoMaker" component={CardoMaker} options={{ title: 'CardoMaker', headerShown: true}} />
                     </Stack.Navigator>
                     </Root>
                 </Provider>

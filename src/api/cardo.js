@@ -1,6 +1,6 @@
 const cardBaseUrl = 'http://172.20.10.3:8050/api';
 
-export function pushCard(text) {
+export function pushCardo(text) {
     let url = `${cardBaseUrl}/card`;
 
     console.log(`Making POST request to: ${url}`);
@@ -27,7 +27,7 @@ export function pushCard(text) {
     });
 }
 
-export function pullCard(id) {
+export function pullCardo(id) {
     let url = `${cardBaseUrl}/card?id=${id}`;
 
     console.log(`Making GET request to: ${url}`);

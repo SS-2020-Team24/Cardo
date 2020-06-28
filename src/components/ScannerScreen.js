@@ -1,24 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Text,
-    View,
-} from 'react-native';
-//
-import {
-  AppRegistry,
-  StyleSheet,
-  TouchableOpacity,
-  Linking
-} from 'react-native';
+import {Text, View} from 'react-native';
+import {AppRegistry, StyleSheet, TouchableOpacity, Linking} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
-//
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
-
-import {Container, Icon, Fab, Button, Toast} from 'native-base';
-// import NavigationContainer from './NavigationContainer';
-
+import {Container, Toast} from 'native-base';
 import {connect} from 'react-redux';
 
 class ScannerScreen extends React.Component {
@@ -55,19 +42,7 @@ class ScannerScreen extends React.Component {
               />
         );
     }
-    handleFabPress(){
-
-    }
-    handleViewEdit() {
-        // this.props.navigation.navigate('ViewEdit');
-    }
 }
-// const styles = {
-//     button: {width: 160, justifyContent: 'center'},
-//     buttonText: {
-//         color:'white', fontSize:40, fontWeight:'100', textAlign: 'center'
-//     }
-// };
 const styles = StyleSheet.create({
   centerText: {
     flex: 1,

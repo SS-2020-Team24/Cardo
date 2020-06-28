@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet, Text, Platform} from 'react-native';
-
 import {connect} from 'react-redux';
-
-
 import moment from 'moment';
 import {ListItem, Container, Icon, Fab, Button, Toast} from 'native-base';
 
 
-class CardItem extends React.Component {
-
+class CardoItem extends React.Component {
 
     constructor(props) {
         super(props);
@@ -63,17 +59,6 @@ class CardItem extends React.Component {
     }
 }
 const styles = {
-    ItemText: {backgroundColor:'blue',color:'white',padding:0,width:150},
-    button1: {backgroundColor:'red', height: 40, width: 50, justifyContent: 'center'},
-    button2: {backgroundColor:'green', height: 40, width: 50, justifyContent: 'center'},
-    buttonText: {
-        color:'white', fontSize:20, fontWeight:'100', textAlign: 'center'
-    },
-    image: {
-        flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center"
-    },
     text: {
         fontFamily: 'serif',
         alignSelf: 'center',
@@ -98,4 +83,4 @@ const styles = {
 };
 export default connect((state) => ({
     
-}))(CardItem);
+}))(CardoItem);

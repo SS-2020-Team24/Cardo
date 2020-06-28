@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InfiniteScrollView from 'react-native-infinite-scroll-view';
 
 import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
 import { AsyncStorage } from 'react-native';
 import {Container, Icon, Fab, Button, Toast} from 'native-base';
-// import NavigationContainer from './NavigationContainer';
-
 import {connect} from 'react-redux';
 
-import {pushCard, pullCard} from '../api/card'
+import {pushCardo, pullCardo} from '../api/cardo'
 
 class TopScreen extends React.Component {
     static propTypes = {
@@ -18,7 +15,7 @@ class TopScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleViewEdit = this.handleViewEdit.bind(this);
+        this.handleScanner = this.handleScanner.bind(this);
         this.handleButton2 = this.handleButton2.bind(this);
         this.handleButton3 = this.handleButton3.bind(this);
         this.handleButton4 = this.handleButton4.bind(this);
@@ -41,7 +38,7 @@ class TopScreen extends React.Component {
                     <Text style={styles.text}>Cardo</Text>
                 </View>
                 <View style={{flex: 4, flexDirection:'column', justifyContent: 'space-around', alignSelf:'center', alignItems:'center'}}>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleViewEdit()}>
+                    <Button info full rounded style={styles.button} onPress={() => this.handleScanner()}>
                         <Text style={styles.buttonText}>Edit</Text>
                     </Button>
                     <Button info full rounded style={styles.button} onPress={() => this.handleButton2()}>
@@ -75,7 +72,7 @@ class TopScreen extends React.Component {
     }
     handleButton2(){
         console.log('handleButton2');
-        this.props.navigation.navigate('CardList');
+        this.props.navigation.navigate('CardoList');
         // pushCard("test2").then((data) => {
         //     console.log(data);
         // }).catch((err) => {
@@ -122,12 +119,20 @@ class TopScreen extends React.Component {
         console.log('handleButton7');
         AsyncStorage.getAllKeys().then((data) => {
             console.log(data);
+            let arr=[];
+            AsyncStorage.multiGet(data).then((data) => {
+                console.log(data);
+                data.forEach((data) => {
+                    arr.push(data[1]);
+                });
+                // console.log(JSON.parse(arr));
+            });
         });
     }
 
-    handleViewEdit() {
-        console.log('handleViewEdit');
-        this.props.navigation.navigate('ScannerScreen', {name:"abc"});
+    handleScanner() {
+        // console.log('handleViewEdit');
+        // this.props.navigation.navigate('ScannerScreen', {name:"abc"});
     }
 }
 const styles = {
