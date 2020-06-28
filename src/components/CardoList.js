@@ -29,6 +29,7 @@ class CardoList extends React.Component {
 
     render() {
         const cardos = this.props.cardos;
+        console.log('render');
         console.log(this.props.cardos);
         return (
             <View style={{flex: 1}}>
@@ -47,9 +48,9 @@ class CardoList extends React.Component {
         );
     }
     handleFab(){
-        // const uuid = require('uuid/v4');
-        // let id = 3;
-        this.props.dispatch(initCardoId({cardoId: 3, cardoName: '', cardobases: []}));
+        const uuid = require('uuid/v4');
+        let id = uuid();
+        this.props.dispatch(initCardoId({cardoId: id, cardoName: '', cardobases: []}));
         this.props.navigation.navigate('CardoMaker');
     }
     // handleRefresh() {

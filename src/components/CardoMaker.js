@@ -75,6 +75,7 @@ class CardoMaker extends React.Component {
 		let newCardo = {cardoId: this.props.cardoId, cardoName: this.props.cardoName, cardobases: this.props.cardobases};
 		this.props.dispatch(finishEditCardo_action(newCardo));
 		console.log('finish edit cardo');
+		this.props.navigation.goBack();
 	}
 }
 

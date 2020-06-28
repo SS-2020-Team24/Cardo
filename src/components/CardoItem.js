@@ -4,7 +4,7 @@ import {View, StyleSheet, Text, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import {ListItem, Container, Icon, Fab, Button, Toast} from 'native-base';
-
+import {initCardoId} from '../states/tempCardo-actions';
 
 class CardoItem extends React.Component {
 
@@ -15,9 +15,9 @@ class CardoItem extends React.Component {
         }
         this.handleTooltipToggle = this.handleTooltipToggle.bind(this);
         this.handleShare = this.handleShare.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         // this.handleVote = this.handleVote.bind(this);
     }
-
     render() {
         const item = this.props.item;
         return (
@@ -27,7 +27,7 @@ class CardoItem extends React.Component {
                         </Text>
                         {this.state.tooltipOpen && 
                             <View style={styles.tooltip} onPress={this.handleTooltipToggle}>
-                                <Button transparent >
+                                <Button transparent onPress={this.handleEdit}>
                                     <Text style={styles.text}>Edit</Text>
                                 </Button>
                                 <Button transparent >
@@ -52,7 +52,9 @@ class CardoItem extends React.Component {
         this.props.navigation.navigate('QRcodeScreen');
     }
     handleEdit(){
-
+        this.handleTooltipToggle();
+        this.props.dispatch(initCardoId(this.props.item));
+        this.props.navigation.navigate('CardoMaker');
     }
     handleView(){
 
