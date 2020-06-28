@@ -34,34 +34,49 @@ import QRcodeScreen from './components/QRcodeScreen';
 // });
 
 import {tempCardo} from './states/tempCardo-reducers';
+import {myCardo} from './states/myCardo-reducers';
 
 const Stack = createStackNavigator();
 
 const appReducer = {
     search, toast, post, postForm, postItem,
-    tempCardo
+    tempCardo, myCardo
 };
 
 const store = createStore(combineReducers(appReducer), 
     compose(applyMiddleware(thunkMiddleware, loggerMiddleware)));
 
+import CardoMaker from './components/CardoMaker'
+import CardoViewer from './components/CardoViewer'
+
+                // <CardoViewer />
 export default class App extends React.Component {
     render() {
         return (
-            <NavigationContainer>
-                <Provider store={store}>
-                {/* <Text>Welcome to React Native QQ!</Text>
-                <Text>To get started, edit App.js</Text> */}
-                    <Root>
-                    <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: 'gray' } }}>
-                        <Stack.Screen name="TopScreen" component={TopScreen} options={{ title: 'Menu', headerShown: false}} />
-                        <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ title: 'ScannerScreen', headerShown: true}} />
-                        <Stack.Screen name="CardList" component={CardList} options={{ title: 'CardList', headerShown: true}} />
-                        <Stack.Screen name="QRcodeScreen" component={QRcodeScreen} options={{ title: 'QRcodeScreen', headerShown: true}} />
-                    </Stack.Navigator>
-                    </Root>
-                </Provider>
-            </NavigationContainer>
+            <Provider store={store}>
+                <CardoMaker cardoId={3}/>
+            </Provider>
         );
     }
 }
+
+// export default class App extends React.Component {
+//     render() {
+//         return (
+//             <NavigationContainer>
+//                 <Provider store={store}>
+//                 {/* <Text>Welcome to React Native QQ!</Text>
+//                 <Text>To get started, edit App.js</Text> */}
+//                     <Root>
+//                     <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: 'gray' } }}>
+//                         <Stack.Screen name="TopScreen" component={TopScreen} options={{ title: 'Menu', headerShown: false}} />
+//                         <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ title: 'ScannerScreen', headerShown: true}} />
+//                         <Stack.Screen name="CardList" component={CardList} options={{ title: 'CardList', headerShown: true}} />
+//                         <Stack.Screen name="QRcodeScreen" component={QRcodeScreen} options={{ title: 'QRcodeScreen', headerShown: true}} />
+//                     </Stack.Navigator>
+//                     </Root>
+//                 </Provider>
+//             </NavigationContainer>
+//         );
+//     }
+// }
