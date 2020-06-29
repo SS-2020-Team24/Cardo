@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Text, View} from 'react-native';
-import {AppRegistry, StyleSheet, TouchableOpacity, Linking} from 'react-native';
+import {AppRegistry, StyleSheet, TouchableOpacity, Linking, AsyncStorage} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
-import InfiniteScrollView from 'react-native-infinite-scroll-view';
-import {Container, Toast} from 'native-base';
 import {connect} from 'react-redux';
+
+import {
+  finishEditCardo as moveTempCardoToMyCardo_action
+} from '../states/myCardo-actions'
+import {pushCardo, pullCardo} from '../api/cardo';
 
 class ScannerScreen extends React.Component {
     static propTypes = {
@@ -15,14 +18,30 @@ class ScannerScreen extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.onSuccess = this.onSuccess.bind(this);
     }
     // onSuccess = e => {
     //     Linking.openURL(e.data).catch(err =>
     //       console.error('An error occured', err)
     //     );
     //   };
-    onSuccess(){
+    onSuccess(url){
       console.log('hhh');
+      let id = url.data.slice(8);
+      console.log(id);
+      console.log("get");
+      pullCardo(id).then((internetCardo) => {
+          console.log("kkk");
+          console.log(internetCardo);
+          let data = internetCardo;
+          console.log(data);
+          AsyncStorage.setItem(id, JSON.stringify(data));
+          this.props.dispatch(moveTempCardoToMyCardo_action(data));
+        }).catch((err) => {
+          console.log("Api call pull error");
+        });
+      console.log("set");
     }
     render() {
         const {navigate} = this.props.navigation;

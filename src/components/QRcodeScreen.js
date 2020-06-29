@@ -25,7 +25,7 @@ class QRcodeScreen extends React.Component {
         return (
             <View style={{flex: 1}} justifyContent="flex-start" alignItems="center">
                 <Text style={styles.text}>Here is your QR code</Text>
-                <QRCode value={url} />
+                <QRCode value={url} size={200}/>
             </View>
         );
     }

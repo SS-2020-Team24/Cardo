@@ -57,7 +57,7 @@ export default class App extends React.Component {
                     <Root>
                     <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: 'gray' } }}>
                         <Stack.Screen name="TopScreen" component={TopScreen} options={{ title: 'Menu', headerShown: false}} />
-                        <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ title: 'ScannerScreen', headerShown: false}} />
+                        <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ title: 'ScannerScreen', headerShown: true}} />
                         <Stack.Screen name="CardoList" component={CardoList} options={{ title: 'CardoList', headerShown: true}} />
                         <Stack.Screen name="QRcodeScreen" component={QRcodeScreen} options={{ title: 'QRcodeScreen', headerShown: true}} />
                         <Stack.Screen name="CardoMaker" component={CardoMaker} options={{ title: 'CardoMaker', headerShown: true}} />

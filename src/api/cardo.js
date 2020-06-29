@@ -1,24 +1,24 @@
-const cardBaseUrl = 'http://172.20.10.3:8050/api';
+const cardBaseUrl = 'http://192.168.42.179:8163/api';
+// const cardBaseUrl = 'http://cardo-sever2-dev.us-east-1.elasticbeanstalk.com/api';
 
-export function pushCardo(text) {
+export function pushCardo(cardo) {
     let url = `${cardBaseUrl}/card`;
-
+    // console.log(JSON.stringify(cardo));
     console.log(`Making POST request to: ${url}`);
-
+    console.log("gg");
     return fetch(url, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            text
-        })
+        body: JSON.stringify(cardo)
     }).then(function(res) {
         if (res.status !== 200)
             throw new Error(`Unexpected response code: ${res.status}`);
-            console.log("abcddddd")
 
+        // console.log("success");
+        // console.log(res.json());
         return res.json();
     }).catch(function(error) {
         console.log('There has been a problem with your fetch operation: ' + error.message);
