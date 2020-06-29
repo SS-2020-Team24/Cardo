@@ -25,6 +25,21 @@ export function clearCardo() {
 	}
 }
 
+export function updataEditingCardobaseId(newEditingCardobaseId) {
+	return {
+		type: '@TEMP_CARDO/UPDATE_EDITING_CARDOBASE_ID',
+		newEditingCardobaseId
+	};
+}
+
+export function updateCardobaseLink(editingCardobaseId, newLink) {
+	return {
+		type: '@TEMP_CARDO/UPDATE_CARDOBASE_LINK',
+		editingCardobaseId,
+		newLink
+	};
+}
+
 export function initCardoId(cardo) {
 	return {
 		type: '@TEMP_CARDO/INIT_CARDO_ID',
