@@ -5,11 +5,11 @@ export function finishEditCardo(newCardo) {
 	AsyncStorage.setItem(newCardo.cardoId, JSON.stringify(newCardo));
 	console.log("lookhere");
 	console.log(newCardo);
-	AsyncStorage.getItem(newCardo.cardoId).then((data) => {
-		console.log(JSON.parse(data));
-	});
+	// AsyncStorage.getItem(newCardo.cardoId).then((data) => {
+	// 	console.log(JSON.parse(data));
+	// });
 	// AsyncStorage.getAllKeys().then((data) => {
-	// 	// console.log(data);
+	// 	// console.log(data); 
 	// 	data.forEach((key) => {
 	// 		AsyncStorage.getItem(key).then((data) => {
 	// 			console.log(JSON.parse(data));

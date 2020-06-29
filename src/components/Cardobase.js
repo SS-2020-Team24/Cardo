@@ -45,11 +45,6 @@ class Cardobase extends React.Component {
 		}
 	}
 
-	componentWillUnmount() {
-		let newCardobase = {id: this.state.id, initX: this.state.x, initY: this.state.y, text: this.state.text};
-		this.props.dispatch(updateCardobase_action(newCardobase));
-	}	
-
 	render() { 
 		return (
 			<View>
@@ -69,6 +64,10 @@ class Cardobase extends React.Component {
 	handleShortPress() {
 		this.setState({
 			active: !this.state.active
+		}, () => {
+			let newCardobase = {id: this.state.id, initX: this.state.x, initY: this.state.y, text: this.state.text};
+			this.props.dispatch(updateCardobase_action(newCardobase));
+			console.log('cardobase update tempCardo');
 		});
 	}
 
@@ -76,6 +75,10 @@ class Cardobase extends React.Component {
 		this.setState({
 			x: bounds.left,
 			y: bounds.top,
+		}, () => {
+			let newCardobase = {id: this.state.id, initX: this.state.x, initY: this.state.y, text: this.state.text};
+			this.props.dispatch(updateCardobase_action(newCardobase));
+			console.log('cardobase update tempCardo');
 		});
 	}
 }

@@ -24,7 +24,7 @@ class CardoMaker extends React.Component {
     	cardoId: PropTypes.string.isRequired,
     	cardoName: PropTypes.string.isRequired,
     	cardobases: PropTypes.array.isRequired,
-    	cardos: PropTypes.array.isRequired
+    	// cardos: PropTypes.array.isRequired
     };
 
     constructor(props) {
@@ -35,16 +35,14 @@ class CardoMaker extends React.Component {
 		this.finishEditCardo = this.finishEditCardo.bind(this);
     }
 
-	componentWillMount() {
-	}
-
 	render() { 
 		let card = this.props.cardobases.map(p => (
 				<Cardobase initState={p}/>
 			));		
-		let test = this.props.cardos.map(cardo => (
-				<Text> {cardo.cardoId} {cardo.cardoName} {cardo.cardobases.length}</Text>
-			));
+		// let test = this.props.cardos.map(cardo => (
+		// 		<Text> {cardo.cardoId} {cardo.cardoName} {cardo.cardobases.length}</Text>
+		// 	));
+		// 		{test}
 		return (
 			<View>
 				<Button onPress={this.createCardobase} title='Create New Cardobase' />
@@ -53,7 +51,6 @@ class CardoMaker extends React.Component {
 					onChangeText={this.changeCardoName} value={this.props.cardoName}
 				/> 
 				<Text>Cardo ID is {this.props.cardoId}</Text>
-				{test}
 				<Text>-----</Text>
 				{card}
 			</View>
@@ -85,6 +82,6 @@ const styles = {
 };
 
 export default connect(state => ({
-    ...state.tempCardo,
-    ...state.myCardo
+    ...state.tempCardo
+    // ,...state.myCardo
 }))(CardoMaker); 
