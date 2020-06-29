@@ -24,6 +24,7 @@ import CardoList from './components/CardoList';
 import QRcodeScreen from './components/QRcodeScreen';
 import CardoMaker from './components/CardoMaker';
 import CardoViewer from './components/CardoViewer';
+import OthersCardoList from './components/OthersCardoList';
 // const AppNavigator = createStackNavigator({
 //     Today: {screen: TodayScreen},
 //     Forecast: {screen: ForecastScreen},
@@ -34,12 +35,13 @@ import CardoViewer from './components/CardoViewer';
 
 import {tempCardo} from './states/tempCardo-reducers';
 import {myCardo} from './states/myCardo-reducers';
+import {othersCardo} from './states/othersCardo-reducers';
 
 const Stack = createStackNavigator();
 
 const appReducer = {
     search, toast, post, postForm, postItem,
-    tempCardo, myCardo
+    tempCardo, myCardo, othersCardo
 };
 
 const store = createStore(combineReducers(appReducer), 
@@ -62,6 +64,8 @@ export default class App extends React.Component {
                         <Stack.Screen name="QRcodeScreen" component={QRcodeScreen} options={{ title: 'QRcodeScreen', headerShown: true}} />
                         <Stack.Screen name="CardoMaker" component={CardoMaker} options={{ title: '編輯 Cardo', headerShown: true}} />
                         <Stack.Screen name="CardoViewer" component={CardoViewer} options={{ title: '查看 Cardo', headerShown: true}} />
+                        
+                        <Stack.Screen name="OthersCardoList" component={OthersCardoList} options={{ title: 'OthersCardoList', headerShown: true}} />
                     </Stack.Navigator>
                     </Root>
                 </Provider>

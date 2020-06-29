@@ -23,6 +23,7 @@ export function tempCardo(state = initViewCardoState, action) {
 					p.text = action.newCardobase.text;
 					p.initX = action.newCardobase.initX;
 					p.initY = action.newCardobase.initY;
+					// p = action.newCardobase;
 				}
 			return {
 				...state,
