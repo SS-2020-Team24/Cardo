@@ -15,63 +15,44 @@ class TopScreen extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleCardoList = this.handleCardoList.bind(this);
+        this.handleOthersCardoList = this.handleOthersCardoList.bind(this);
         this.handleScanner = this.handleScanner.bind(this);
-        this.handleButton2 = this.handleButton2.bind(this);
-        this.handleButton3 = this.handleButton3.bind(this);
         this.handleButton4 = this.handleButton4.bind(this);
-        this.handleButton5 = this.handleButton5.bind(this);
-        this.state = {
-            cnt: 0,
-            val: 50
-        }
     }
 
     render() {
         const {navigate} = this.props.navigation;
         console.log('aabba');
         return (
-            <View style={{flex:1}}>
-
             <View style={{flex: 1, justifyContent: 'center', alignItems:'stretch'}}>
             <ImageBackground  source={require('../images/background.jpg')} style={styles.image}>
                 <View style={{flex: 3, justifyContent: 'center'}}>
                     <Text style={styles.text}>Cardo</Text>
                 </View>
                 <View style={{flex: 4, flexDirection:'column', justifyContent: 'space-around', alignSelf:'center', alignItems:'center'}}>
+                    <Button info full rounded style={styles.button} onPress={() => this.handleCardoList()}>
+                        <Text style={styles.buttonText}>MY</Text>
+                    </Button>
+                    <Button info full rounded style={styles.button} onPress={() => this.handleOthersCardoList()}>
+                        <Text style={styles.buttonText}>Others</Text>
+                    </Button>
                     <Button info full rounded style={styles.button} onPress={() => this.handleScanner()}>
-                        <Text style={styles.buttonText}>Edit</Text>
+                        <Text style={styles.buttonText}>Scanner</Text>
                     </Button>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleButton2()}>
-                        <Text style={styles.buttonText}>View My Cardo</Text>
-                    </Button>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleButton3()}>
-                        <Text style={styles.buttonText}>test</Text>
+                    <Button info full rounded style={styles.button} onPress={() => this.handleButton4()}>
+                        <Text style={styles.buttonText}>Clear</Text>
                     </Button>
                 </View>
                 <View style={{flex:2}}>
                 </View>
             </ImageBackground>
             </View>
-            <View style={{flex:1}}>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleButton4()}>
-                        <Text style={styles.buttonText}>b4</Text>
-                    </Button>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleButton5()}>
-                        <Text style={styles.buttonText}>b5</Text>
-                    </Button>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleButton6()}>
-                        <Text style={styles.buttonText}>b6</Text>
-                    </Button>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleButton7()}>
-                        <Text style={styles.buttonText}>b7</Text>
-                    </Button>
-            </View>
-            </View>
 
         );
     }
-    handleButton2(){
-        console.log('handleButton2');
+    handleCardoList(){
+        console.log('handleCardoList');
         this.props.navigation.navigate('CardoList');
         // pushCard("test2").then((data) => {
         //     console.log(data);
@@ -79,60 +60,22 @@ class TopScreen extends React.Component {
         //     console.log("Api call error");
         // });
     }
-    handleButton3(){
-        console.log('handleButton3');
+    handleOthersCardoList(){
+        console.log('handleOthersCardoList');
+        this.props.navigation.navigate('OthersCardoList')
         // pullCard("84ecbb60-bbe1-428d-a2d1-b537f9fa9d3b").then((data) => {
         //     console.log(data);
         // }).catch((err) => {
         //     console.log("Api call error");
         // });
-        AsyncStorage.clear();
     }
     handleButton4(){
         console.log('handleButton4');
-        let key = this.state.cnt.toString();
-        let val = this.state.val.toString();
-        AsyncStorage.setItem(key, val);
-        this.setState({
-            cnt: this.state.cnt + 1,
-            val: this.state.val + 1
-        });
+        AsyncStorage.clear();
     }
-    handleButton5(){
-        console.log('handleButton5');
-        AsyncStorage.getAllKeys().then((data) => {
-            data.forEach((data) => {
-                AsyncStorage.getItem(data).then( (data) => {
-                    console.log(data);
-                });
-            })
-            console.log(data);
-        });
-    }
-    handleButton6(){
-        console.log('handleButton6');
-        AsyncStorage.getAllKeys().then((data) => {
-            console.log(data);
-        });
-    }
-    handleButton7(){
-        console.log('handleButton7');
-        AsyncStorage.getAllKeys().then((data) => {
-            console.log(data);
-            let arr=[];
-            AsyncStorage.multiGet(data).then((data) => {
-                console.log(data);
-                data.forEach((data) => {
-                    arr.push(data[1]);
-                });
-                // console.log(JSON.parse(arr));
-            });
-        });
-    }
-
     handleScanner() {
-        // console.log('handleViewEdit');
-        this.props.navigation.navigate('ScannerScreen', {name:"abc"});
+        console.log('handleScanner');
+        this.props.navigation.navigate('ScannerScreen');
     }
 }
 const styles = {

@@ -7,7 +7,7 @@ import {ListItem, Container, Icon, Fab, Button, Toast} from 'native-base';
 import {initCardoId} from '../states/tempCardo-actions';
 import {pushCardo, pullCardo} from '../api/cardo';
 
-class CardoItem extends React.Component {
+class OthersCardoItem extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,7 +19,6 @@ class CardoItem extends React.Component {
         this.handleShare = this.handleShare.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleView = this.handleView.bind(this);
-        this.handleTest = this.handleTest.bind(this);
     }
     render() {
         const item = this.props.item;
@@ -31,17 +30,8 @@ class CardoItem extends React.Component {
                         </Text>
                         {this.state.tooltipOpen && 
                             <View style={styles.tooltip} onPress={this.handleTooltipToggle}>
-                                <Button transparent onPress={this.handleEdit}>
-                                    <Text style={styles.text}>Edit</Text>
-                                </Button>
                                 <Button transparent onPress={this.handleView}>
                                     <Text style={styles.text}>View</Text>
-                                </Button>
-                                <Button transparent onPress={this.handleShare}>
-                                    <Text style={styles.text}>Share</Text>
-                                </Button>
-                                <Button transparent onPress={this.handleTest}>
-                                    <Text style={styles.text}>test</Text>
                                 </Button>
                             </View>
                         }
@@ -54,9 +44,9 @@ class CardoItem extends React.Component {
         });
     }
     handleEdit(){
-        this.handleTooltipToggle();
-        this.props.dispatch(initCardoId(this.props.item));
-        this.props.navigation.navigate('CardoMaker');
+        // this.handleTooltipToggle();
+        // this.props.dispatch(initCardoId(this.props.item));
+        // this.props.navigation.navigate('CardoMaker');
     }
     handleView(){
         this.handleTooltipToggle();
@@ -64,21 +54,13 @@ class CardoItem extends React.Component {
         this.props.navigation.navigate('CardoViewer');
     }
     handleShare(){
-        console.log('handleShare && handlePush');
-        pushCardo(this.props.item).then((data) => {
-            console.log(data);
-        }).catch((err) => {
-            console.log("Api call push error");
-        });
-        this.props.navigation.navigate("QRcodeScreen", {cardoId: this.props.item.cardoId});
-    }
-    handleTest(){
-        console.log('handlePull');
-        pullCardo(this.props.item.cardoId).then((data) => {
-            console.log(data);
-        }).catch((err) => {
-            console.log("Api call pull error");
-        });
+        // console.log('handleShare && handlePush');
+        // pushCardo(this.props.item).then((data) => {
+        //     console.log(data);
+        // }).catch((err) => {
+        //     console.log("Api call push error");
+        // });
+        // this.props.navigation.navigate("QRcodeScreen", {cardoId: this.props.item.cardoId});
     }
 }
 const styles = {
@@ -106,4 +88,4 @@ const styles = {
 };
 export default connect((state) => ({
     
-}))(CardoItem);
+}))(OthersCardoItem);

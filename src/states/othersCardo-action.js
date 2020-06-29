@@ -1,15 +1,15 @@
 import { AsyncStorage } from 'react-native';
 export function finishEditCardo(newCardo) {
-	AsyncStorage.setItem(newCardo.cardoId, JSON.stringify(newCardo));
+	// AsyncStorage.setItem(newCardo.cardoId, JSON.stringify(newCardo));
 	return {
-		type: '@MY_CARDO/FINISH_EDIT_CARDO',
+		type: '@OTHERS_CARDO/FINISH_EDIT_CARDO',
 		newCardo
 	};
 }
 
-export function initMyCardo(newCardos){
+export function initOthersCardo(othersCardo){
 	return {
-		type: '@MY_CARDO/INIT_MYCARDO',
-		newCardos
+		type: '@OTHERS_CARDO/INIT_OTHERSCARDO',
+		othersCardo
 	};
 }

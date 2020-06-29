@@ -27,21 +27,32 @@ class CardoList extends React.Component {
     componentDidMount() {
         let arr=[{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}]}];
         // console.log('init start');
-        AsyncStorage.getAllKeys().then((data) => {
-            data.forEach((key) => {
-                AsyncStorage.getItem(key).then((data) => {
-                    arr.push(JSON.parse(data));
-                    // console.log('deb');
-                    // console.log(key);
-                    // console.log(JSON.parse(data));
-                }).catch((err) => {
-                    console.log("!!!!!!!!!!!!err");
-                });
-            });
+        // AsyncStorage.getAllKeys().then((data) => {
+        //     data.forEach((key) => {
+        //         AsyncStorage.getItem(key).then((data) => {
+        //             arr.push(JSON.parse(data));
+        //             // console.log('deb');
+        //             // console.log(key);
+        //             // console.log(JSON.parse(data));
+        //         }).catch((err) => {
+        //             console.log("!!!!!!!!!!!!err");
+        //         });
+        //     });
+        // });
+        AsyncStorage.getItem("MyCardo").then((data) => {
+            // console.log(data);
+            let x = {cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}]}]};
+            if(data === null){
+                console.log(x);
+                this.props.dispatch(initMyCardo(x));
+            }
+            else{
+                this.props.dispatch(initMyCardo(JSON.parse(data)));
+            }
         });
-        console.log("didmount");
-        console.log(JSON.stringify(arr));
-        this.props.dispatch(initMyCardo(arr));
+        // console.log("didmount");
+        // console.log(JSON.stringify(arr));
+        // this.props.dispatch(initMyCardo(arr));
     }
 
     render() {

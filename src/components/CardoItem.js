@@ -40,9 +40,6 @@ class CardoItem extends React.Component {
                                 <Button transparent onPress={this.handleShare}>
                                     <Text style={styles.text}>Share</Text>
                                 </Button>
-                                <Button transparent onPress={this.handleTest}>
-                                    <Text style={styles.text}>test</Text>
-                                </Button>
                             </View>
                         }
             </ListItem>
@@ -64,6 +61,7 @@ class CardoItem extends React.Component {
         this.props.navigation.navigate('CardoViewer');
     }
     handleShare(){
+        this.handleTooltipToggle();
         console.log('handleShare && handlePush');
         pushCardo(this.props.item).then((data) => {
             console.log(data);
@@ -73,12 +71,12 @@ class CardoItem extends React.Component {
         this.props.navigation.navigate("QRcodeScreen", {cardoId: this.props.item.cardoId});
     }
     handleTest(){
-        console.log('handlePull');
-        pullCardo(this.props.item.cardoId).then((data) => {
-            console.log(data);
-        }).catch((err) => {
-            console.log("Api call pull error");
-        });
+        // console.log('handlePull');
+        // pullCardo(this.props.item.cardoId).then((data) => {
+        //     console.log(data);
+        // }).catch((err) => {
+        //     console.log("Api call pull error");
+        // });
     }
 }
 const styles = {

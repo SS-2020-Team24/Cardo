@@ -6,9 +6,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 import {connect} from 'react-redux';
 
-import {
-  finishEditCardo as moveTempCardoToMyCardo_action
-} from '../states/myCardo-actions'
+import {finishEditCardo} from '../states/othersCardo-action'
 import {pushCardo, pullCardo} from '../api/cardo';
 
 class ScannerScreen extends React.Component {
@@ -36,8 +34,7 @@ class ScannerScreen extends React.Component {
           console.log(internetCardo);
           let data = internetCardo;
           console.log(data);
-          AsyncStorage.setItem(id, JSON.stringify(data));
-          this.props.dispatch(moveTempCardoToMyCardo_action(data));
+          this.props.dispatch(finishEditCardo(data));
         }).catch((err) => {
           console.log("Api call pull error");
         });

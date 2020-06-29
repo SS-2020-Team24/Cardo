@@ -1,8 +1,8 @@
-const initMyCardoState = {
-	cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽'}]}
+const initOthersCardoState = {
+	cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}]}
 	]
 };
-// import { AsyncStorage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 // const initMyCardoState = (() => {
 // 	let arr=[{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽'}]}];
 // 	console.log('init start');
@@ -20,9 +20,9 @@ const initMyCardoState = {
 // 	});
 // 	return {cardos: arr};
 // });
-export function myCardo(state = initMyCardoState, action) {
+export function othersCardo(state = initOthersCardoState, action) {
 	switch(action.type) {
-		case '@MY_CARDO/FINISH_EDIT_CARDO':
+		case '@OTHERS_CARDO/FINISH_EDIT_CARDO':
 			let newCardos = state.cardos.slice(0);
 			console.log("reducer here");
 			console.log(action.newCardo);
@@ -31,6 +31,7 @@ export function myCardo(state = initMyCardoState, action) {
 				if(p.cardoId == action.newCardo.cardoId) {
 					p.cardoName = action.newCardo.cardoName;
 					p.cardobases = action.newCardo.cardobases;
+					p.editingCardobaseId = -1;
 					// p = action.newCardo;
 					exist = true;
 				}
@@ -38,16 +39,22 @@ export function myCardo(state = initMyCardoState, action) {
 			if(!exist) {
 				newCardos.push(action.newCardo);
 			}
+			let x = {
+				...state, 
+				cardos: newCardos
+			};
+			console.log(x);
+			AsyncStorage.setItem("OthersCardo", JSON.stringify(x));
+
 			return {
 				...state, 
 				cardos: newCardos
 			};
-		case '@MY_CARDO/INIT_MYCARDO':
-			let tem = action.newCardos;
-			return {
-				...state, 
-				cardos: tem
-			};
+		case '@OTHERS_CARDO/INIT_OTHERSCARDO':
+			let tem = action.othersCardo;
+			console.log("dd");
+			console.log(tem);
+			return tem;
 		default:
 			return state;
 	}

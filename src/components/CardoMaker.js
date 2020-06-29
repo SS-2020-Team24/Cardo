@@ -110,8 +110,7 @@ class CardoMaker extends React.Component {
 	finishEditCardo() {
 		let newCardo = {cardoId: this.props.cardoId, cardoName: this.props.cardoName, cardobases: this.props.cardobases,
 			editingCardobaseId: -1};
-		AsyncStorage.setItem(this.props.cardoId, JSON.stringify(newCardo));
-
+		console.log('xxxxxxxxxxxx');
 		this.props.dispatch(moveTempCardoToMyCardo_action(newCardo));
 		this.props.dispatch(clearTeampCardo_action);
 		console.log('finish edit cardo');
