@@ -25,7 +25,7 @@ class CardoList extends React.Component {
     }
 
     componentDidMount() {
-        let arr=[{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽'}]}];
+        let arr=[{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}]}];
         // console.log('init start');
         AsyncStorage.getAllKeys().then((data) => {
             data.forEach((key) => {
@@ -69,7 +69,7 @@ class CardoList extends React.Component {
     handleFab(){
         const uuid = require('uuid/v4');
         let id = uuid();
-        this.props.dispatch(initCardoId({cardoId: id, cardoName: '', cardobases: []}));
+        this.props.dispatch(initCardoId({cardoId: id, cardoName: '', cardobases: [], editingCardobaseId: -1}));
         this.props.navigation.navigate('CardoMaker');
     }
 }

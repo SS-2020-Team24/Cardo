@@ -37,12 +37,24 @@ export function tempCardo(state = initViewCardoState, action) {
 			return {
 				initViewCardoState
 			}
-		case '@TEMP_CARDO/INIT_CARDO_ID':
+		case '@TEMP_CARDO/UPDATE_EDITING_CARDOBASE_ID':
 			return {
 				...state,
-				cardoId: action.cardo.cardoId,
-				cardoName: action.cardo.cardoName,
-				cardobases: action.cardo.cardobases
+				editingCardobaseId: action.newEditingCardobaseId
+			}
+		case '@TEMP_CARDO/UPDATE_CARDOBASE_LINK':
+			let __newCardobases = state.cardobases.slice(0);
+			for(let p of __newCardobases)
+				if(p.id == action.editingCardobaseId) {
+					p.link = action.newLink;
+				}	
+			return {
+				...state,
+				cardobases: __newCardobases
+			}
+		case '@TEMP_CARDO/INIT_CARDO_ID':
+			return {
+				...action.cardo,
 			};
 		default:
 			return state;

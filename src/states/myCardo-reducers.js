@@ -1,5 +1,5 @@
 const initMyCardoState = {
-	cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽'}]}
+	cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}]}
 	]
 };
 // import { AsyncStorage } from 'react-native';
@@ -31,6 +31,7 @@ export function myCardo(state = initMyCardoState, action) {
 				if(p.cardoId == action.newCardo.cardoId) {
 					p.cardoName = action.newCardo.cardoName;
 					p.cardobases = action.newCardo.cardobases;
+					p.editingCardobaseId = -1;
 					// p = action.newCardo;
 					exist = true;
 				}

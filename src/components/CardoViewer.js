@@ -21,11 +21,10 @@ class CardoViewer extends React.Component {
 
     render() {
 		let card = this.props.cardobases.map(p => (
-				<Cardobase initState={{...p, disabled: true}}/>
+				<Cardobase initState={{...p, viewMode: true}}/>
 			));		
 		return (
 			<View>
-				<Text>View My Cardo</Text>
                 <Text>{this.props.cardoName}</Text>
 				{card}
 			</View>
