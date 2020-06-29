@@ -19,6 +19,8 @@ import {
 	finishEditCardo as moveTempCardoToMyCardo_action
 } from '../states/myCardo-actions'
 
+import { AsyncStorage } from 'react-native';
+
 class CardoMaker extends React.Component {
     static propTypes = {
     	cardoId: PropTypes.string.isRequired,
@@ -74,6 +76,10 @@ class CardoMaker extends React.Component {
 
 	finishEditCardo() {
 		let newCardo = {cardoId: this.props.cardoId, cardoName: this.props.cardoName, cardobases: this.props.cardobases};
+		console.log("set");
+		console.log(newCardo);
+		AsyncStorage.setItem(this.props.cardoId, JSON.stringify({cardoId: this.props.cardoId, cardoName: this.props.cardoName, cardobases: this.props.cardobases}));
+
 		this.props.dispatch(moveTempCardoToMyCardo_action(newCardo));
 		this.props.dispatch(clearTeampCardo_action);
 		console.log('finish edit cardo');
