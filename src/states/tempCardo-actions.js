@@ -32,14 +32,6 @@ export function updataEditingCardobaseId(newEditingCardobaseId) {
 	};
 }
 
-export function updateCardobaseLink(editingCardobaseId, newLink) {
-	return {
-		type: '@TEMP_CARDO/UPDATE_CARDOBASE_LINK',
-		editingCardobaseId,
-		newLink
-	};
-}
-
 export function initCardoId(cardo) {
 	return {
 		type: '@TEMP_CARDO/INIT_CARDO_ID',

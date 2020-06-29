@@ -18,12 +18,12 @@ export function tempCardo(state = initViewCardoState, action) {
 			};
 		case '@TEMP_CARDO/UPDATE_CARDOBASE':
 			let _newCardobases = state.cardobases.slice(0);
-			for(let p of _newCardobases)
-				if(p.id == action.newCardobase.id) {
-					p.text = action.newCardobase.text;
-					p.initX = action.newCardobase.initX;
-					p.initY = action.newCardobase.initY;
+			
+			_newCardobases.forEach((val, index)=> {
+				if(val.id == action.newCardobase.id) {
+					_newCardobases[index] = {...val, ...action.newCardobase};
 				}
+			});
 			return {
 				...state,
 				cardobases: _newCardobases
@@ -41,16 +41,6 @@ export function tempCardo(state = initViewCardoState, action) {
 			return {
 				...state,
 				editingCardobaseId: action.newEditingCardobaseId
-			}
-		case '@TEMP_CARDO/UPDATE_CARDOBASE_LINK':
-			let __newCardobases = state.cardobases.slice(0);
-			for(let p of __newCardobases)
-				if(p.id == action.editingCardobaseId) {
-					p.link = action.newLink;
-				}	
-			return {
-				...state,
-				cardobases: __newCardobases
 			}
 		case '@TEMP_CARDO/INIT_CARDO_ID':
 			return {

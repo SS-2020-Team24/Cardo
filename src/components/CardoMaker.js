@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  View, Text, Button, TextInput, ScrollView
+  View, Text, Button, TextInput, ScrollView, Alert 
 } from 'react-native';
 
 import Cardobase from './Cardobase'
@@ -13,7 +13,7 @@ import {
 	createCardobase as createCardobase_action,
 	changeCardoName as changeCardoName_action,
 	clearCardo as clearTeampCardo_action,
-	updateCardobaseLink as updateCardobaseLink_action
+	updateCardobase as updateCardobase_action
 } from '../states/tempCardo-actions'
 
 import {
@@ -29,51 +29,58 @@ class CardoMaker extends React.Component {
     	cardobases: PropTypes.array.isRequired,
 
         editingCardobaseId: PropTypes.number.isRequired
-    	// cardos: PropTypes.array.isRequired
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-        	editCardobaseLinkActive: false,
-        	link: ""
+        	editCardobasePropsActive: false,
+        	prop_type: "",
+        	prop_value: "",
+        	
+        	newCardobaseInitX: 30,
+        	newCardobaseInitY: 150,
         };
 
 		this.changeCardoName = this.changeCardoName.bind(this);
 		this.createCardobase = this.createCardobase.bind(this);
 		this.finishEditCardo = this.finishEditCardo.bind(this);
 
-		this.handleEditCardobaseLinkActive = this.handleEditCardobaseLinkActive.bind(this);
-		this.handleEditCardobaseLink = this.handleEditCardobaseLink.bind(this);
+		this.handleEditCardobasePropsActive = this.handleEditCardobasePropsActive.bind(this);
+		this.handleLinkButtonPress = this.handleLinkButtonPress.bind(this);
+		this.handleColorButtonPress = this.handleColorButtonPress.bind(this);
+		this.handleSizeButtonPress = this.handleSizeButtonPress.bind(this);
+		this.handleEditCardobaseProps = this.handleEditCardobaseProps.bind(this);
     }
 
 	render() { 
 		let card = this.props.cardobases.map(p => (
 				<Cardobase initState={{...p}}/>
 			));		
-		// let test = this.props.cardos.map(cardo => (
-		// 		<Text> {cardo.cardoId} {cardo.cardoName} {cardo.cardobases.length}</Text>
-		// 	));
-		// 		{test}
 		return (
 			<View>
 				<TextInput borderColor={'red'} borderWidth={1}
 					onChangeText={this.changeCardoName} value={this.props.cardoName}
 				/> 
-				<Text>Cardo ID is {this.props.cardoId}</Text>
 				<View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 					<Button onPress={this.finishEditCardo} title='done' />
-					{
-						this.props.editingCardobaseId !== -1 && <Button title='link' onPress={this.handleEditCardobaseLinkActive} />
+					{this.props.editingCardobaseId !== -1 && 
+						<View  style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+							<Button title='link' color='gray' onPress={this.handleLinkButtonPress} />
+							<Text>&nbsp;</Text>
+							<Button title='color' color='gray' onPress={this.handleColorButtonPress} />
+							<Text>&nbsp;</Text>
+							<Button title='size' color='gray' onPress={this.handleSizeButtonPress} />
+						</View>
 					}
 					<Button onPress={this.createCardobase} title='create' />
 				</View>
-				{ this.state.editCardobaseLinkActive &&
+				{ this.state.editCardobasePropsActive &&
 					<ScrollView keyboardShouldPersistTaps='handled'>
 						<TextInput borderColor={'green'} borderWidth={1}
-						onChangeText={(text)=>{this.setState({link: text})}} value={this.state.link}
-						onEndEditing={this.handleEditCardobaseLink} onBlur={this.handleEditCardobaseLink}/> 
+						onChangeText={(text)=>{this.setState({prop_value: text})}} value={this.state.prop_value}
+						onEndEditing={this.handleEditCardobaseProps} onBlur={this.handleEditCardobaseProps}/> 
 					</ScrollView>
 				}
 				{card}
@@ -88,8 +95,15 @@ class CardoMaker extends React.Component {
 	}
 
 	createCardobase() {
-		let newCardobase = {id: this.props.cardobases.length,initX: 100, initY: 100, text: '', link: 'https://www.facebook.com/profile.php?id=100009072129765'};
+		let newCardobase = {id: this.props.cardobases.length,initX: this.state.newCardobaseInitX, initY: this.state.newCardobaseInitY, text: '', link: ''};
 		this.props.dispatch(createCardobase_action(newCardobase));
+		this.setState({
+			newCardobaseInitX: this.state.newCardobaseInitX + 10,
+			newCardobaseInitY: this.state.newCardobaseInitY + 10
+		});
+		if(this.state.newCardobaseInitX >= 200) {
+			Alert.alert('Your Cardo is too fat = =');
+		}
 		console.log('create new cardobase');
 	}
 
@@ -104,16 +118,27 @@ class CardoMaker extends React.Component {
 		this.props.navigation.goBack();
 	}
 
-	handleEditCardobaseLinkActive() {
+	handleEditCardobasePropsActive(prop_type) {
+		console.log(prop_type);
 		this.setState({
-			editCardobaseLinkActive: !this.state.editCardobaseLinkActive
+			editCardobasePropsActive: !this.state.editCardobasePropsActive,
+			prop_type
 		});
 	}
-	handleEditCardobaseLink() {
+	handleLinkButtonPress() {
+		this.handleEditCardobasePropsActive('link');
+	}
+	handleColorButtonPress() {
+		this.handleEditCardobasePropsActive('color');
+	}
+	handleSizeButtonPress() {
+		this.handleEditCardobasePropsActive('size');
+	}
+	handleEditCardobaseProps() {
 		console.log(this.props.editingCardobaseId);
-		console.log(this.state.link);
-		this.props.dispatch(updateCardobaseLink_action(this.props.editingCardobaseId, this.state.link));
-		this.handleEditCardobaseLinkActive();
+		console.log(this.state.prop_type);
+		this.props.dispatch(updateCardobase_action({id: this.props.editingCardobaseId, [this.state.prop_type]: this.state.prop_value}));
+		this.handleEditCardobasePropsActive();
 	}
 }
 
@@ -122,5 +147,4 @@ const styles = {
 
 export default connect(state => ({
     ...state.tempCardo
-    // ,...state.myCardo
 }))(CardoMaker); 
