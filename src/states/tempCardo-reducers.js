@@ -1,5 +1,5 @@
 const initViewCardoState = {
-	cardoId: 3,
+	cardoId: '-1',
 	cardoName: '我的桐人',
 	cardobases: [{'id': 0,'initX': 10, 'initY': 10, 'text': '桐人'},
 		{'id': 1,'initX': 10, 'initY': 40, 'text': '雙刀劍士'},
@@ -33,6 +33,10 @@ export function tempCardo(state = initViewCardoState, action) {
 				...state,
 				cardoName: action.newCardoName
 			};
+		case '@TEMP_CARDO/CLEAR_CARDO':
+			return {
+				initViewCardoState
+			}
 		case '@TEMP_CARDO/INIT_CARDO_ID':
 			return {
 				...state,

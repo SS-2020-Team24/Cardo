@@ -11,16 +11,17 @@ import {connect} from 'react-redux';
 
 import {
 	createCardobase as createCardobase_action,
-	changeCardoName as changeCardoName_action
+	changeCardoName as changeCardoName_action,
+	clearCardo as clearTeampCardo_action
 } from '../states/tempCardo-actions'
 
 import {
-	finishEditCardo as finishEditCardo_action
+	finishEditCardo as moveTempCardoToMyCardo_action
 } from '../states/myCardo-actions'
 
 class CardoMaker extends React.Component {
     static propTypes = {
-    	cardoId: PropTypes.number.isRequired,
+    	cardoId: PropTypes.string.isRequired,
     	cardoName: PropTypes.string.isRequired,
     	cardobases: PropTypes.array.isRequired,
     	cardos: PropTypes.array.isRequired
@@ -73,7 +74,8 @@ class CardoMaker extends React.Component {
 
 	finishEditCardo() {
 		let newCardo = {cardoId: this.props.cardoId, cardoName: this.props.cardoName, cardobases: this.props.cardobases};
-		this.props.dispatch(finishEditCardo_action(newCardo));
+		this.props.dispatch(moveTempCardoToMyCardo_action(newCardo));
+		this.props.dispatch(clearTeampCardo_action);
 		console.log('finish edit cardo');
 		this.props.navigation.goBack();
 	}

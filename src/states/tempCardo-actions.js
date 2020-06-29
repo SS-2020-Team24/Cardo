@@ -19,6 +19,12 @@ export function changeCardoName(newCardoName) {
 	};
 }
 
+export function clearCardo() {
+	return {
+		type: '@TEMP_CARDO/CLEAR_CARDO'
+	}
+}
+
 export function initCardoId(cardo) {
 	return {
 		type: '@TEMP_CARDO/INIT_CARDO_ID',

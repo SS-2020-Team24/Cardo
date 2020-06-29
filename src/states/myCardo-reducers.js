@@ -5,10 +5,13 @@
 import { AsyncStorage } from 'react-native';
 const initMyCardoState = (() => {
 	let arr=[{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽'}]}];
+	console.log('init start');
 	AsyncStorage.getAllKeys().then((data) => {
 		data.forEach((key) => {
 			AsyncStorage.getItem(key).then((data) => {
 				arr.push(JSON.parse(data));
+				console.log('deb');
+				console.log(key);
 				console.log(JSON.parse(data));
 			}).catch((err) => {
 				console.log("!!!!!!!!!!!!err");
