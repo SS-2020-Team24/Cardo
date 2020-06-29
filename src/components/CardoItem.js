@@ -11,15 +11,24 @@ class CardoItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tooltipOpen: false
+            tooltipOpen: false,
+            test: false
         }
         this.handleTooltipToggle = this.handleTooltipToggle.bind(this);
         this.handleShare = this.handleShare.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         // this.handleVote = this.handleVote.bind(this);
     }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevProps.item.name !== this.props.item.name) { 
+    //         this.setState({
+    //             test: ~this.state.test
+    //         });
+    //     }
+    // }   
     render() {
         const item = this.props.item;
+        // console.log(item.cardoName);
         return (
             <ListItem containerStyle={{flex: 1}} onPress={this.handleTooltipToggle}>
                         <Text style={{backgroundColor:'blue',color:'white',padding:10,width:180}}>

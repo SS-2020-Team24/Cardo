@@ -138,7 +138,7 @@ class TopScreen extends React.Component {
 const styles = {
     button: {width: 160, justifyContent: 'center'},
     buttonText: {
-        color:'white', fontSize:40, fontWeight:'100', textAlign: 'center'
+        color:'white', fontSize:20, fontWeight:'100', textAlign: 'center'
     },
     image: {
         flex: 1,

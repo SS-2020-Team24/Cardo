@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, FlatList} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, FlatList, RefreshControl} from 'react-native';
 import {Icon, Fab} from 'native-base';
 import {connect} from 'react-redux';
 import {initCardoId} from '../states/tempCardo-actions';
@@ -14,13 +14,11 @@ class CardoList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        FlatListItems: [{name:'Patrick star'},{name:'Gallileo'},{name:'Einsten'},{name:'Peterson'},{name:'Schwarzenneger'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'},{name:'Dostoyevsky'}],
-        test: {
-            name:'hey'
-        }
-        };
+        // this.state = {
+        //     refreshing: false
+        // };
         this.handleFab = this.handleFab.bind(this);
+        // this.handleRefresh = this.handleRefresh.bind(this);
     }
 
     componentDidMount() {
@@ -29,8 +27,9 @@ class CardoList extends React.Component {
 
     render() {
         const cardos = this.props.cardos;
-        console.log('render');
-        console.log(this.props.cardos);
+
+        // console.log('render');
+        // console.log(this.props.cardos);
         return (
             <View style={{flex: 1}}>
             <FlatList
@@ -38,7 +37,7 @@ class CardoList extends React.Component {
                 data={cardos}
                 renderItem={({item}) => {
                     return <CardoItem navigation={this.props.navigation} item={item} />;
-                }
+                    }
                 }
             />
             <Fab position="bottomRight" onPress={this.handleFab}>
@@ -47,16 +46,13 @@ class CardoList extends React.Component {
             </View>
         );
     }
+
     handleFab(){
         const uuid = require('uuid/v4');
         let id = uuid();
         this.props.dispatch(initCardoId({cardoId: id, cardoName: '', cardobases: []}));
         this.props.navigation.navigate('CardoMaker');
     }
-    // handleRefresh() {
-    //     const {dispatch, searchText} = this.props;
-    //     dispatch(listPosts(searchText));
-    // }
 }
 
 export default connect((state) => ({
