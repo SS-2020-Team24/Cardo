@@ -58,7 +58,7 @@ class CardoItem extends React.Component {
     handleShare(){
         console.log('handleShare');
         this.handleTooltipToggle();
-        this.props.navigation.navigate('QRcodeScreen');
+        this.props.navigation.navigate('QRcodeScreen', {cardoId: this.props.item.cardoId});
     }
     handleEdit(){
         this.handleTooltipToggle();

@@ -6,6 +6,9 @@ import {connect} from 'react-redux';
 import {initCardoId} from '../states/tempCardo-actions';
 import CardoItem from './CardoItem';
 
+import { AsyncStorage } from 'react-native';
+import {initMyCardo} from '../states/myCardo-actions';
+
 
 class CardoList extends React.Component {
     static propTypes = {
@@ -22,7 +25,23 @@ class CardoList extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.dispatch(listcardos());
+        let arr=[{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽'}]}];
+        // console.log('init start');
+        AsyncStorage.getAllKeys().then((data) => {
+            data.forEach((key) => {
+                AsyncStorage.getItem(key).then((data) => {
+                    arr.push(JSON.parse(data));
+                    // console.log('deb');
+                    // console.log(key);
+                    // console.log(JSON.parse(data));
+                }).catch((err) => {
+                    console.log("!!!!!!!!!!!!err");
+                });
+            });
+        });
+        console.log("didmount");
+        console.log(JSON.stringify(arr));
+        this.props.dispatch(initMyCardo(arr));
     }
 
     render() {

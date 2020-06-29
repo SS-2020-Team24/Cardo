@@ -17,10 +17,15 @@ class QRcodeScreen extends React.Component {
     }
 
     render() {
+        // let {cardoId} = this.props.navigation.getParam("cardoId", "dd");
+        let cardoId = this.props.route.params.cardoId;
+        let url = "https://" + cardoId;
+        // console.log(url);
+        // console.log(JSON.stringify(this.props.navigation.getParam("cardoId")));
         return (
             <View style={{flex: 1}} justifyContent="flex-start" alignItems="center">
                 <Text style={styles.text}>Here is your QR code</Text>
-                <QRCode value={this.props.url} />
+                <QRCode value={url} />
             </View>
         );
     }
