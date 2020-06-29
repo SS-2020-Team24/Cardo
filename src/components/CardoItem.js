@@ -17,15 +17,8 @@ class CardoItem extends React.Component {
         this.handleTooltipToggle = this.handleTooltipToggle.bind(this);
         this.handleShare = this.handleShare.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
-        // this.handleVote = this.handleVote.bind(this);
+        this.handleView = this.handleView.bind(this);
     }
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevProps.item.name !== this.props.item.name) { 
-    //         this.setState({
-    //             test: ~this.state.test
-    //         });
-    //     }
-    // }   
     render() {
         const item = this.props.item;
         // console.log(item.cardoName);
@@ -39,7 +32,7 @@ class CardoItem extends React.Component {
                                 <Button transparent onPress={this.handleEdit}>
                                     <Text style={styles.text}>Edit</Text>
                                 </Button>
-                                <Button transparent >
+                                <Button transparent onPress={this.handleView}>
                                     <Text style={styles.text}>View</Text>
                                 </Button>
                                 <Button transparent onPress={this.handleShare}>
@@ -66,7 +59,9 @@ class CardoItem extends React.Component {
         this.props.navigation.navigate('CardoMaker');
     }
     handleView(){
-
+        this.handleTooltipToggle();
+        this.props.dispatch(initCardoId(this.props.item));
+        this.props.navigation.navigate('CardoViewer');
     }
 }
 const styles = {

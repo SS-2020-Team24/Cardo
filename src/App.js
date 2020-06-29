@@ -22,7 +22,8 @@ import TopScreen from './components/TopScreen';
 import ScannerScreen from './components/ScannerScreen';
 import CardoList from './components/CardoList';
 import QRcodeScreen from './components/QRcodeScreen';
-
+import CardoMaker from './components/CardoMaker';
+import CardoViewer from './components/CardoViewer';
 // const AppNavigator = createStackNavigator({
 //     Today: {screen: TodayScreen},
 //     Forecast: {screen: ForecastScreen},
@@ -44,8 +45,6 @@ const appReducer = {
 const store = createStore(combineReducers(appReducer), 
     compose(applyMiddleware(thunkMiddleware, loggerMiddleware)));
 
-import CardoMaker from './components/CardoMaker'
-import CardoViewer from './components/CardoViewer'
 
                 // <CardoViewer />
 export default class App extends React.Component {
@@ -58,10 +57,11 @@ export default class App extends React.Component {
                     <Root>
                     <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: 'gray' } }}>
                         <Stack.Screen name="TopScreen" component={TopScreen} options={{ title: 'Menu', headerShown: false}} />
-                        
+                        <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ title: 'ScannerScreen', headerShown: false}} />
                         <Stack.Screen name="CardoList" component={CardoList} options={{ title: 'CardoList', headerShown: true}} />
                         <Stack.Screen name="QRcodeScreen" component={QRcodeScreen} options={{ title: 'QRcodeScreen', headerShown: true}} />
                         <Stack.Screen name="CardoMaker" component={CardoMaker} options={{ title: 'CardoMaker', headerShown: true}} />
+                        <Stack.Screen name="CardoViewer" component={CardoViewer} options={{ title: 'CardoViewer', headerShown: true}} />
                     </Stack.Navigator>
                     </Root>
                 </Provider>

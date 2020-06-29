@@ -132,7 +132,7 @@ class TopScreen extends React.Component {
 
     handleScanner() {
         // console.log('handleViewEdit');
-        // this.props.navigation.navigate('ScannerScreen', {name:"abc"});
+        this.props.navigation.navigate('ScannerScreen', {name:"abc"});
     }
 }
 const styles = {
