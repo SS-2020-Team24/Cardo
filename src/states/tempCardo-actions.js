@@ -25,10 +25,10 @@ export function clearCardo() {
 	}
 }
 
-export function updataEditingCardobaseId(newEditingCardobaseId) {
+export function updataEditingCardobase(newCardobaseEditingOption) {
 	return {
-		type: '@TEMP_CARDO/UPDATE_EDITING_CARDOBASE_ID',
-		newEditingCardobaseId
+		type: '@TEMP_CARDO/UPDATE_EDITING_CARDOBASE',
+		newCardobaseEditingOption
 	};
 }
 

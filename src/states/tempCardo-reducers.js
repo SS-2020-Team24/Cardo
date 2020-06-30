@@ -26,7 +26,7 @@ export function tempCardo(state = initViewCardoState, action) {
 			});
 			return {
 				...state,
-				cardobases: _newCardobases
+				cardobases: _newCardobases,
 			};
 		case '@TEMP_CARDO/CHANGE_CARDO_NAME':
 			return {
@@ -37,10 +37,10 @@ export function tempCardo(state = initViewCardoState, action) {
 			return {
 				initViewCardoState
 			}
-		case '@TEMP_CARDO/UPDATE_EDITING_CARDOBASE_ID':
+		case '@TEMP_CARDO/UPDATE_EDITING_CARDOBASE':
 			return {
 				...state,
-				editingCardobaseId: action.newEditingCardobaseId
+				...action.newCardobaseEditingOption
 			}
 		case '@TEMP_CARDO/INIT_CARDO_ID':
 			return {
