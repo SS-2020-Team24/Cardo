@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  View, Text
+  View, Text, ImageBackground, Image
 } from 'react-native';
 
 import Cardobase from './Cardobase'
@@ -24,15 +24,21 @@ class CardoViewer extends React.Component {
 				<Cardobase initState={{...p, viewMode: true}}/>
 			));		
 		return (
-			<View>
-                <Text>{this.props.cardoName}</Text>
+			<View style={{flex: 1}}>
+            <ImageBackground  source={require('../images/background.jpg')} style={styles.image}>
 				{card}
+            </ImageBackground>
 			</View>
 		);
     }
 }
 
 const styles = {
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
+    }
 };
 
 export default connect(state => ({
