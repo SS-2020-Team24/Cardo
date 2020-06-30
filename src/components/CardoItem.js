@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, StyleSheet, Text, Platform} from 'react-native';
+import {View, StyleSheet, Text, Platform, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import {ListItem, Container, Icon, Fab, Button, Toast} from 'native-base';
 import {initCardoId} from '../states/tempCardo-actions';
 import {pushCardo, pullCardo} from '../api/cardo';
-
+import {deleteMyCardo} from '../states/myCardo-actions';
 class CardoItem extends React.Component {
 
     constructor(props) {
@@ -20,7 +20,7 @@ class CardoItem extends React.Component {
         this.handleShare = this.handleShare.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleView = this.handleView.bind(this);
-        this.handleTest = this.handleTest.bind(this);
+        this.handleLongPress = this.handleLongPress.bind(this);
     }
     componentDidMount(){
     }
@@ -30,7 +30,7 @@ class CardoItem extends React.Component {
         // console.log(this.state.date);   
         // console.log(item.cardoTime);
         return (
-            <ListItem containerStyle={{height: 100}} onPress={this.handleTooltipToggle}>
+            <ListItem containerStyle={{height: 100}} onPress={this.handleTooltipToggle} onLongPress={this.handleLongPress}>
                         <Text style={styles.text}>
                             {item.cardoName}
                         </Text>
@@ -76,13 +76,34 @@ class CardoItem extends React.Component {
         });
         this.props.navigation.navigate("QRcodeScreen", {cardoId: this.props.item.cardoId});
     }
-    handleTest(){
-        // console.log('handlePull');
-        // pullCardo(this.props.item.cardoId).then((data) => {
-        //     console.log(data);
-        // }).catch((err) => {
-        //     console.log("Api call pull error");
+    handleLongPress(){
+        console.log(this.props.item.cardoName);
+        // let name = JSON.stringify(this.props.item.cardoName);
+        // for()
+        // name = name.filter((data) => {
+        //     if(data !== '"')
+        //         return data;
         // });
+        // console.log(name);
+        // let ask = "確定刪除 " + name + " ?"
+        // console.log(ask);
+        Alert.alert(
+          "確定刪除?",
+          "刪除後將無法復原",
+          [
+            {
+              text: "取消",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => {
+                    console.log("OK Pressed");
+                    this.props.dispatch(deleteMyCardo(this.props.item));
+                }
+            },
+          // { cancelable: false }
+          ]
+        );
     }
 }
 const styles = {

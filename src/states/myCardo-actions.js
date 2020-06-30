@@ -13,3 +13,9 @@ export function initMyCardo(myCardo){
 		myCardo
 	};
 }
+export function deleteMyCardo(myCardo){
+	return {
+		type: '@MY_CARDO/DELETE_MYCARDO',
+		myCardo
+	};
+}

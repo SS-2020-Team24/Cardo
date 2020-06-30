@@ -20,7 +20,7 @@ import {
 	finishEditCardo as moveTempCardoToMyCardo_action
 } from '../states/myCardo-actions'
 
-import { AsyncStorage } from 'react-native';
+import {AsyncStorage, ImageBackground, Image} from 'react-native';
 
 class CardoMaker extends React.Component {
     static propTypes = {
@@ -59,6 +59,8 @@ class CardoMaker extends React.Component {
 				<Cardobase initState={{...p}}/>
 			));		
 		return (
+			<View style={{flex: 1}}>
+			<ImageBackground  source={require('../images/background.jpg')} style={styles.image}>
 			<View>
 				<TextInput borderColor={'red'} borderWidth={1}
 					onChangeText={this.changeCardoName} value={this.props.cardoName}
@@ -84,6 +86,8 @@ class CardoMaker extends React.Component {
 					</ScrollView>
 				}
 				{card}
+			</View>
+			</ImageBackground>
 			</View>
 		);
 	}
@@ -164,7 +168,11 @@ class CardoMaker extends React.Component {
 	}
 }
 
-const styles = { 
+const styles = {
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+    }
 };
 
 export default connect(state => ({

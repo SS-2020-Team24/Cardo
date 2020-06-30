@@ -56,6 +56,22 @@ export function othersCardo(state = initOthersCardoState, action) {
 			console.log("dd");
 			console.log(tem);
 			return tem;
+		case '@OTHERS_CARDO/DELETE_OTHERSCARDO':
+			let remainCardos = state.cardos.slice(0);
+			remainCardos = remainCardos.filter((data) => {
+				if(data.cardoId !== action.othersCardo.cardoId){
+					return data;
+				}
+			})
+			let y = {
+				...state, 
+				cardos: remainCardos
+			};
+			AsyncStorage.setItem("OthersCardo", JSON.stringify(y));
+			return {
+				...state, 
+				cardos: remainCardos
+			};
 		default:
 			return state;
 	}
