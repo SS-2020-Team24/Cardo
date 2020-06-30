@@ -13,3 +13,9 @@ export function initOthersCardo(othersCardo){
 		othersCardo
 	};
 }
+export function deleteOthersCardo(othersCardo){
+	return {
+		type: '@OTHERS_CARDO/DELETE_OTHERSCARDO',
+		othersCardo
+	};
+}

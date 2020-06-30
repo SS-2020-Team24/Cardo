@@ -40,9 +40,6 @@ class TopScreen extends React.Component {
                     <Button info full rounded style={styles.button} onPress={() => this.handleScanner()}>
                         <Text style={styles.buttonText}>Scanner</Text>
                     </Button>
-                    <Button info full rounded style={styles.button} onPress={() => this.handleButton4()}>
-                        <Text style={styles.buttonText}>Clear</Text>
-                    </Button>
                 </View>
                 <View style={{flex:2}}>
                 </View>

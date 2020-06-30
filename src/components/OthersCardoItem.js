@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, StyleSheet, Text, Platform} from 'react-native';
+import {View, StyleSheet, Text, Platform, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import {ListItem, Container, Icon, Fab, Button, Toast} from 'native-base';
 import {initCardoId} from '../states/tempCardo-actions';
 import {pushCardo, pullCardo} from '../api/cardo';
-
+import {deleteOthersCardo} from '../states/othersCardo-action';
 class OthersCardoItem extends React.Component {
 
     constructor(props) {
@@ -19,12 +19,13 @@ class OthersCardoItem extends React.Component {
         this.handleShare = this.handleShare.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleView = this.handleView.bind(this);
+        this.handleLongPress = this.handleLongPress.bind(this);
     }
     render() {
         const item = this.props.item;
         // console.log(item.cardoName);
         return (
-            <ListItem containerStyle={{flex: 1}} onPress={this.handleTooltipToggle}>
+            <ListItem containerStyle={{flex: 1}} onPress={this.handleTooltipToggle} onLongPress={this.handleLongPress}>
                         <Text style={styles.text}>
                             {item.cardoName}
                         </Text>
@@ -62,6 +63,26 @@ class OthersCardoItem extends React.Component {
         //     console.log("Api call push error");
         // });
         // this.props.navigation.navigate("QRcodeScreen", {cardoId: this.props.item.cardoId});
+    }
+    handleLongPress(){
+        console.log(this.props.item.cardoName);
+        Alert.alert(
+          "確定刪除" + {},
+          "刪除後將無法復原",
+          [
+            {
+              text: "取消",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => {
+                    console.log("OK Pressed");
+                    this.props.dispatch(deleteOthersCardo(this.props.item));
+                }
+            },
+          // { cancelable: false }
+          ]
+        );
     }
 }
 const styles = {
