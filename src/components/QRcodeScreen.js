@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, FlatList} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, FlatList, ImageBackground, Image} from 'react-native';
 import {connect} from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -24,8 +24,10 @@ class QRcodeScreen extends React.Component {
         // console.log(JSON.stringify(this.props.navigation.getParam("cardoId")));
         return (
             <View style={{flex: 1}} justifyContent="flex-start" alignItems="center">
+            <ImageBackground  source={require('../images/background.jpg')} style={styles.image}>
                 <Text style={styles.text}>Here is your QR code</Text>
                 <QRCode value={url} size={200}/>
+            </ImageBackground>
             </View>
         );
     }
@@ -40,6 +42,12 @@ const styles = {
         fontWeight:'800', 
         fontStyle:'italic', 
         textAlign: 'center'
+    },
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        alignItems: "center"
+        // justifyContent: "center"
     }
 };
 export default connect((state) => ({

@@ -32,7 +32,32 @@ class ScannerScreen extends React.Component {
       pullCardo(id).then((internetCardo) => {
           console.log("kkk");
           console.log(internetCardo);
+          //get time
+          var date = new Date().getDate(); //Current Date
+          var month = new Date().getMonth() + 1; //Current Month
+          var year = new Date().getFullYear(); //Current Year
+          var hours = new Date().getHours(); //Current Hours
+          var min = new Date().getMinutes(); //Current Minutes
+          var sec = new Date().getSeconds(); //Current Seconds
+          if(month.length === 1){
+            month = '0' + month;
+          }
+          if(date.length === 1){
+            date = '0' + date;
+          }
+          if(hours.length === 1){
+            hours = '0' + hours;
+          }
+          if(min.length === 1){
+            min = '0' + min;
+          }
+          if(sec.length === 1){
+            sec = '0' + sec;
+          }
+          let ts = year + '/' + month + '/' + date + ' ' + hours + ':' + min + ':' + sec;
+          //get time
           let data = internetCardo;
+          data.cardoTime = ts;
           console.log(data);
           this.props.dispatch(finishEditCardo(data));
         }).catch((err) => {
