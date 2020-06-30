@@ -1,5 +1,5 @@
 const initMyCardoState = {
-	cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}], cardoTime: "2022/11/06 11:11:11"}
+	cardos: [{cardoId: 3, cardoName: 'Example', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}], cardoTime: "2022/11/06 11:11:11"}
 	]
 };
 import { AsyncStorage } from 'react-native';

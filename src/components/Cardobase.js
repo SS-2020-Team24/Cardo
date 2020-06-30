@@ -84,17 +84,26 @@ class Cardobase extends React.Component {
 		console.log('deb now');
 		console.log(this.state);
 		if(this.state.viewMode === true) {
-			Linking.canOpenURL(this.state.link).then(supported => {
-				if (!supported) {
-					console.log('fail to open ' + this.state.link);
-				}
-				else {
-					return Linking.openURL(this.state.link);
-				}
-			});
-			console.log('press successssssssss wtih view mode');
+			if(this.state.link !== '') {
+				Linking.canOpenURL(this.state.link).then(supported => {
+					if (!supported) {
+						console.log('fail to open ' + this.state.link);
+					}
+					else {
+						return Linking.openURL(this.state.link);
+					}
+				});
+				console.log('press successssssssss wtih view mode');
+			}
 		}
 		else {
+			if(this.state.id === this.props.editingCardobaseId) {
+				this.setState({
+					link: this.props.editingCardobaseLink,
+					fontColor: this.props.editingCardobaseFontColor,
+					fontSize: this.props.editingCardobaseFontSize
+				});
+			}
 			this.setState({
 				inputState: !this.state.inputState
 			}, () => {

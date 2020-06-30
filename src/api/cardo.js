@@ -1,4 +1,6 @@
-const cardBaseUrl = 'http://192.168.42.179:8163/api';
+// const cardBaseUrl = 'http://192.168.42.179:8163/api';
+const cardBaseUrl = 'http://192.168.0.4:8163/api';
+
 // const cardBaseUrl = 'http://cardo-sever2-dev.us-east-1.elasticbeanstalk.com/api';
 
 export function pushCardo(cardo) {
