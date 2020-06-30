@@ -41,6 +41,7 @@ class CardoMaker extends React.Component {
         this.state = {
         	editCardobasePropsActive: false,
         	prop_type: "",
+        	prop_type_in_tempCardo: "",
         	prop_value: "",
         	
         	newCardobaseInitX: 30,
@@ -145,27 +146,27 @@ class CardoMaker extends React.Component {
 		this.props.navigation.goBack();
 	}
 
-	handleEditCardobasePropsActive(prop_type) {
+	handleEditCardobasePropsActive(prop_type, prop_type_in_tempCardo) {
 		console.log(prop_type);
 		this.setState({
 			editCardobasePropsActive: !this.state.editCardobasePropsActive,
 			prop_type,
+			prop_type_in_tempCardo
 		});
 	}
 	handleLinkButtonPress() {
-		this.handleEditCardobasePropsActive('editingCardobaseLink');
+		this.handleEditCardobasePropsActive('editingCardobaseLink','link');
 	}
 	handleColorButtonPress() {
-		this.handleEditCardobasePropsActive('editingCardobaseFontColor');
+		this.handleEditCardobasePropsActive('editingCardobaseFontColor','fontColor');
 	}
 	handleSizeButtonPress() {
-		this.handleEditCardobasePropsActive('editingCardobaseFontSize');
+		this.handleEditCardobasePropsActive('editingCardobaseFontSize','fontSize');
 	}
 	handleEditCardobaseProps() {
-		console.log(this.props.editingCardobaseId);
-		console.log(this.state.prop_type);
-		this.props.dispatch(updataEditingCardobase_action({[this.state.prop_type]: this.state.prop_value}));
-		this.props.dispatch(updateCardobase_action({id: this.props.editingCardobaseId, [this.state.prop_type]: this.state.prop_value}));
+		this.props.dispatch(updataEditingCardobase_action({[this.state.prop_type]: (this.state.prop_type === 'editingCardobaseFontSize' ? Number(this.state.prop_value) : this.state.prop_value)}));
+		this.props.dispatch(updateCardobase_action({id: this.props.editingCardobaseId, [this.state.prop_type_in_tempCardo]: 
+			(this.state.prop_type_in_tempCardo === 'fontSize' ? Number(this.state.prop_value) : this.state.prop_value)}));
 		this.handleEditCardobasePropsActive();
 	}
 }
