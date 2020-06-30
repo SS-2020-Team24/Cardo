@@ -32,7 +32,7 @@ class TopScreen extends React.Component {
                 </View>
                 <View style={{flex: 4, flexDirection:'column', justifyContent: 'space-around', alignSelf:'center', alignItems:'center'}}>
                     <Button info full rounded style={styles.button} onPress={() => this.handleCardoList()}>
-                        <Text style={styles.buttonText}>MY</Text>
+                        <Text style={styles.buttonText}>My</Text>
                     </Button>
                     <Button info full rounded style={styles.button} onPress={() => this.handleOthersCardoList()}>
                         <Text style={styles.buttonText}>Others</Text>
@@ -92,7 +92,7 @@ const styles = {
         fontFamily: 'serif',
         alignSelf: 'center',
         padding : 20,
-        color:'white', 
+        color:'rgba(25, 69, 123, 0.9)', 
         fontSize:80, 
         fontWeight:'800', 
         fontStyle:'italic', 

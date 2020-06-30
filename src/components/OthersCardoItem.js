@@ -25,13 +25,14 @@ class OthersCardoItem extends React.Component {
         // console.log(item.cardoName);
         return (
             <ListItem containerStyle={{flex: 1}} onPress={this.handleTooltipToggle}>
-                        <Text style={{backgroundColor:'blue',color:'white',padding:10,width:180}}>
+                        <Text style={styles.text}>
                             {item.cardoName}
                         </Text>
+                        <Text style={styles.date}>{item.cardoTime}</Text>
                         {this.state.tooltipOpen && 
                             <View style={styles.tooltip} onPress={this.handleTooltipToggle}>
-                                <Button transparent onPress={this.handleView}>
-                                    <Text style={styles.text}>View</Text>
+                                <Button transparent onPress={this.handleView} style={{justifyContent: 'center', alignItems: 'center'}}>
+                                    <Text style={styles.buttontext}>View</Text>
                                 </Button>
                             </View>
                         }
@@ -64,22 +65,46 @@ class OthersCardoItem extends React.Component {
     }
 }
 const styles = {
-    text: {
+    buttontext: {
         fontFamily: 'serif',
+        justifyContent: 'center',
         alignSelf: 'center',
-        padding : 20,
+        padding : 30,
         color:'white', 
-        fontSize:30, 
+        fontSize:25, 
         fontWeight:'800', 
         fontStyle:'italic', 
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: 'transparent'
+    },
+    text: {
+        fontFamily: 'serif',
+        width: "55%",  
+        height: "100%",
+        alignSelf: 'center',
+        padding : 20,
+        color:'black', 
+        fontSize:30, 
+        backgroundColor:'rgba(28, 115, 155, 0.3)'
+    },
+    date: {
+        fontFamily: 'serif',
+        width: "45%",  
+        height: "100%",
+        justifyContent: 'center',
+        alignSelf: 'center',
+        padding : 30,
+        color:'black', 
+        fontSize:15, 
+        backgroundColor:'rgba(28, 115, 155, 0.3)'
     },
     tooltip: {
         position: 'absolute',
-        top: 0,
+        top: 12,
         bottom: 0,
         left: 0,
         right: 0,
+        height: "100%",
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

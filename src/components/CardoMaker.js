@@ -108,9 +108,32 @@ class CardoMaker extends React.Component {
 	}
 
 	finishEditCardo() {
+		var date = new Date().getDate(); //Current Date
+        var month = new Date().getMonth() + 1; //Current Month
+        var year = new Date().getFullYear(); //Current Year
+        var hours = new Date().getHours(); //Current Hours
+        var min = new Date().getMinutes(); //Current Minutes
+        var sec = new Date().getSeconds(); //Current Seconds
+        if(month.length === 1){
+        	month = '0' + month;
+        }
+        if(date.length === 1){
+        	date = '0' + date;
+        }
+        if(hours.length === 1){
+        	hours = '0' + hours;
+        }
+        if(min.length === 1){
+        	min = '0' + min;
+        }
+        if(sec.length === 1){
+        	sec = '0' + sec;
+        }
+        let ts = year + '/' + month + '/' + date + ' ' + hours + ':' + min + ':' + sec;
+        // console.log(ts);
 		let newCardo = {cardoId: this.props.cardoId, cardoName: this.props.cardoName, cardobases: this.props.cardobases,
-			editingCardobaseId: -1};
-		console.log('xxxxxxxxxxxx');
+			editingCardobaseId: -1, cardoTime: ts};
+		// console.log('xxxxxxxxxxxx');
 		this.props.dispatch(moveTempCardoToMyCardo_action(newCardo));
 		this.props.dispatch(clearTeampCardo_action);
 		console.log('finish edit cardo');

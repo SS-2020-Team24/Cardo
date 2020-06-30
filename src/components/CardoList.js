@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {initCardoId} from '../states/tempCardo-actions';
 import CardoItem from './CardoItem';
 
-import { AsyncStorage } from 'react-native';
+import {AsyncStorage, ImageBackground, Image} from 'react-native';
 import {initMyCardo} from '../states/myCardo-actions';
 
 
@@ -25,7 +25,6 @@ class CardoList extends React.Component {
     }
 
     componentDidMount() {
-        let arr=[{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}]}];
         // console.log('init start');
         // AsyncStorage.getAllKeys().then((data) => {
         //     data.forEach((key) => {
@@ -41,7 +40,7 @@ class CardoList extends React.Component {
         // });
         AsyncStorage.getItem("MyCardo").then((data) => {
             // console.log(data);
-            let x = {cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}]}]};
+            let x = {cardos: [{cardoId: 3, cardoName: 'TTTTTT', cardobases: [{'initX': 50, 'initY': 50, 'text':'操你媽', 'editingCardobaseId': -1}], cardoTime: "2022/11/06 11:11:11"}]};
             if(data === null){
                 console.log(x);
                 this.props.dispatch(initMyCardo(x));
@@ -62,6 +61,7 @@ class CardoList extends React.Component {
         // console.log(this.props.cardos);
         return (
             <View style={{flex: 1}}>
+            <ImageBackground  source={require('../images/background.jpg')} style={styles.image}>
             <FlatList
                 style={{marginTop:10}}
                 data={cardos}
@@ -73,6 +73,7 @@ class CardoList extends React.Component {
             <Fab position="bottomRight" onPress={this.handleFab}>
                     <Icon name='pencil' type='FontAwesome'/>
             </Fab>
+            </ImageBackground>
             </View>
         );
     }
@@ -84,7 +85,13 @@ class CardoList extends React.Component {
         this.props.navigation.navigate('CardoMaker');
     }
 }
-
+const styles = {
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
+    }
+};
 export default connect((state) => ({
     ...state.myCardo
 }))(CardoList);
