@@ -10,13 +10,17 @@ import {connect} from 'react-redux';
 
 import {
 	updateCardobase as updateCardobase_action,
-	updataEditingCardobaseId as updataEditingCardobaseId_action
+	updataEditingCardobase as updataEditingCardobase_action
 } from '../states/tempCardo-actions' 
 
 class Cardobase extends React.Component {
     static propTypes = {
         initState: PropTypes.object.isRequired,
-        editingCardobaseId: PropTypes.number.isRequired
+
+        editingCardobaseId: PropTypes.number.isRequired,
+        editingCardobaseFontSize: PropTypes.number.isRequired,
+        editingCardobaseFontColor: PropTypes.string.isRequired,
+        editingCardobaseLink: PropTypes.string.isRequired
     };
 
     constructor(props) {
@@ -30,9 +34,11 @@ class Cardobase extends React.Component {
 			y: 100,
 			text: "",
 			link: '',
+			fontSize: 30,
+			fontColor: 'black',
 
 			inputState: false,
-			viewMode: false
+			viewMode: false,
         };
 
         this.handleShortPress = this.handleShortPress.bind(this);
@@ -56,11 +62,14 @@ class Cardobase extends React.Component {
 				minX ={this.state.viewMode ? this.state.initX : -12345} maxX={this.state.viewMode ? this.state.initX : 12345}
 				minY ={this.state.viewMode ? this.state.initY : -12345} maxY={this.state.viewMode ? this.state.initY : 12345}>
 				{this.state.inputState === false ? 
-					<Text>{this.state.text === "" ? "Please input something" : this.state.text}</Text> :
+					<Text style={{fontSize: (this.state.id === this.props.editingCardobaseId ? this.props.editingCardobaseFontSize : this.state.fontSize), 
+							color: (this.state.id === this.props.editingCardobaseId ? this.props.editingCardobaseFontColor : this.state.fontColor)}}>{this.state.text === "" ? "Please input something" : this.state.text}</Text> :
 						<ScrollView keyboardShouldPersistTaps='handled'>
 							<View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
 								<Button title='op' color='gray' onPress={this.handleEditToolPress} />
 									<TextInput borderColor={'blue'} borderWidth={1}
+										fontSize={this.state.id === this.props.editingCardobaseId ? this.props.editingCardobaseFontSize : this.state.fontSize}
+										style={{color: (this.state.id === this.props.editingCardobaseId ? this.props.editingCardobaseFontColor : this.state.fontColor)}}
 										onChangeText={(text)=>{this.setState({text: text})}} value={this.state.text}
 										onEndEditing={this.handleShortPress} onBlur={this.handleShortPress}
 									/> 
@@ -72,6 +81,8 @@ class Cardobase extends React.Component {
 	}
 	
 	handleShortPress() {
+		console.log('deb now');
+		console.log(this.state);
 		if(this.state.viewMode === true) {
 			Linking.canOpenURL(this.state.link).then(supported => {
 				if (!supported) {
@@ -111,8 +122,9 @@ class Cardobase extends React.Component {
 
 	handleEditToolPress() {
 		console.log('succes with ');
-		console.log(this.state.id);
-		this.props.dispatch(updataEditingCardobaseId_action(this.state.id));
+		console.log(this.props);
+		this.props.dispatch(updataEditingCardobase_action({editingCardobaseId: this.state.id, editingCardobaseFontSize: this.state.fontSize,
+        editingCardobaseFontColor: this.state.fontColor, editingCardobaseLink: this.state.link}));
 	}
 }
 

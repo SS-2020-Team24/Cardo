@@ -13,7 +13,8 @@ import {
 	createCardobase as createCardobase_action,
 	changeCardoName as changeCardoName_action,
 	clearCardo as clearTeampCardo_action,
-	updateCardobase as updateCardobase_action
+	updateCardobase as updateCardobase_action,
+	updataEditingCardobase as updataEditingCardobase_action
 } from '../states/tempCardo-actions'
 
 import {
@@ -28,7 +29,10 @@ class CardoMaker extends React.Component {
     	cardoName: PropTypes.string.isRequired,
     	cardobases: PropTypes.array.isRequired,
 
-        editingCardobaseId: PropTypes.number.isRequired
+        editingCardobaseId: PropTypes.number.isRequired,
+        editingCardobaseFontSize: PropTypes.number.isRequired,
+        editingCardobaseFontColor: PropTypes.string.isRequired,
+        editingCardobaseLink: PropTypes.string.isRequired
     };
 
     constructor(props) {
@@ -40,7 +44,7 @@ class CardoMaker extends React.Component {
         	prop_value: "",
         	
         	newCardobaseInitX: 30,
-        	newCardobaseInitY: 150,
+        	newCardobaseInitY: 150
         };
 
 		this.changeCardoName = this.changeCardoName.bind(this);
@@ -99,7 +103,8 @@ class CardoMaker extends React.Component {
 	}
 
 	createCardobase() {
-		let newCardobase = {id: this.props.cardobases.length,initX: this.state.newCardobaseInitX, initY: this.state.newCardobaseInitY, text: '', link: ''};
+		let newCardobase = {id: this.props.cardobases.length,initX: this.state.newCardobaseInitX, initY: this.state.newCardobaseInitY, 
+			text: '', link: '', fontSize: 20, fontColor: 'black'};
 		this.props.dispatch(createCardobase_action(newCardobase));
 		this.setState({
 			newCardobaseInitX: this.state.newCardobaseInitX + 10,
@@ -148,21 +153,22 @@ class CardoMaker extends React.Component {
 		console.log(prop_type);
 		this.setState({
 			editCardobasePropsActive: !this.state.editCardobasePropsActive,
-			prop_type
+			prop_type,
 		});
 	}
 	handleLinkButtonPress() {
-		this.handleEditCardobasePropsActive('link');
+		this.handleEditCardobasePropsActive('editingCardobaseLink');
 	}
 	handleColorButtonPress() {
-		this.handleEditCardobasePropsActive('color');
+		this.handleEditCardobasePropsActive('editingCardobaseFontColor');
 	}
 	handleSizeButtonPress() {
-		this.handleEditCardobasePropsActive('size');
+		this.handleEditCardobasePropsActive('editingCardobaseFontSize');
 	}
 	handleEditCardobaseProps() {
 		console.log(this.props.editingCardobaseId);
 		console.log(this.state.prop_type);
+		this.props.dispatch(updataEditingCardobase_action({[this.state.prop_type]: this.state.prop_value}));
 		this.props.dispatch(updateCardobase_action({id: this.props.editingCardobaseId, [this.state.prop_type]: this.state.prop_value}));
 		this.handleEditCardobasePropsActive();
 	}
