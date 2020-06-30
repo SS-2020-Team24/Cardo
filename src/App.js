@@ -62,8 +62,8 @@ export default class App extends React.Component {
                         <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ title: 'ScannerScreen', headerShown: true}} />
                         <Stack.Screen name="CardoList" component={CardoList} options={{ title: 'CardoList', headerShown: true}} />
                         <Stack.Screen name="QRcodeScreen" component={QRcodeScreen} options={{ title: 'QRcodeScreen', headerShown: true}} />
-                        <Stack.Screen name="CardoMaker" component={CardoMaker} options={{ title: '編輯 Cardo', headerShown: true}} />
-                        <Stack.Screen name="CardoViewer" component={CardoViewer} options={{ title: '查看 Cardo', headerShown: true}} />
+                        <Stack.Screen name="CardoMaker" component={CardoMaker} options={{ title: 'Edit Cardo', headerShown: true}} />
+                        <Stack.Screen name="CardoViewer" component={CardoViewer} options={{ title: 'Show Cardo', headerShown: true}} />
                         
                         <Stack.Screen name="OthersCardoList" component={OthersCardoList} options={{ title: 'OthersCardoList', headerShown: true}} />
                     </Stack.Navigator>

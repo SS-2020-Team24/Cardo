@@ -32,10 +32,10 @@ class TopScreen extends React.Component {
                 </View>
                 <View style={{flex: 4, flexDirection:'column', justifyContent: 'space-around', alignSelf:'center', alignItems:'center'}}>
                     <Button info full rounded style={styles.button} onPress={() => this.handleCardoList()}>
-                        <Text style={styles.buttonText}>My</Text>
+                        <Text style={styles.buttonText}>My Cardos</Text>
                     </Button>
                     <Button info full rounded style={styles.button} onPress={() => this.handleOthersCardoList()}>
-                        <Text style={styles.buttonText}>Others</Text>
+                        <Text style={styles.buttonText}>Others' Cardos</Text>
                     </Button>
                     <Button info full rounded style={styles.button} onPress={() => this.handleScanner()}>
                         <Text style={styles.buttonText}>Scanner</Text>
